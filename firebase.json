@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "dist/Spotify-Playlist-Exporter",
     "ignore": [
       "firebase.json",
       "**/.*",
