@@ -7,11 +7,15 @@
     <div>
         <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="switchAccount()" class="me-2">
             <i class="fas fa-exchange-alt"></i>&nbsp;
-            Switch Account
+            <span class="d-none d-sm-inline">
+                Switch Account
+            </span>
         </button>
         <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="endSession()">
             <i class="fas fa-trash"></i>&nbsp;
-            End Session
+            <span class="d-none d-sm-inline">
+                End Session
+            </span>
         </button>
     </div>
 </mat-toolbar>
@@ -29,7 +33,7 @@
 <ng-template #elseBlock>
     <div class="container-fluid" style="background-color: #E9EAE5; padding-top: 20px;">
         <div class="row justify-content-between">
-            <div class="col-3 flex-column d-flex justify-content-center align-items-center">
+            <div class="col-12 col-sm-3 flex-column d-flex justify-content-center align-items-center mb-3 mb-sm-0">
                 <ng-template [ngIf]="playlistsStatus == 'all'" [ngIfElse]="playlistBlock">
                     <div class="row">
                         <div class="col-12">
@@ -43,7 +47,8 @@
                                     <mat-list>
                                         <mat-list-item class="profile-text">{{userData.name}}</mat-list-item>
                                         <mat-list-item class="profile-text">{{userData.country}}</mat-list-item>
-                                        <mat-list-item class="profile-text">{{userData.product | titlecase}} Subscription
+                                        <mat-list-item class="profile-text">{{userData.product | titlecase}}
+                                            Subscription
                                         </mat-list-item>
                                     </mat-list>
                                 </mat-card-content>
@@ -59,7 +64,8 @@
                                     <div mat-card-avatar></div>
                                     <mat-card-title style="text-align: center;">Playlist Data</mat-card-title>
                                 </mat-card-header>
-                                <img [class]="playlist.images.length == 1 ? 'd-block':'d-none'" style="width: 300px;" mat-card-image src="{{playlist.images[0].url}}" />
+                                <img [class]="playlist.images.length == 1 ? 'd-block':'d-none'" style="width: 300px;"
+                                     mat-card-image src="{{playlist.images[0].url}}"/>
                                 <mat-card-content>
                                     <mat-list>
                                         <mat-list-item>Name: {{playlist.name}}</mat-list-item>
@@ -74,7 +80,7 @@
                     </div>
                 </ng-template>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-sm-8">
                 <ng-template [ngIf]="playlistsStatus == 'all'" [ngIfElse]="elseBlock">
                     <app-playlists [style]="{'width': '95%'}"></app-playlists>
                 </ng-template>
