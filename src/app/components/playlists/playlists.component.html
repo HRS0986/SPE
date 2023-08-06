@@ -1,7 +1,7 @@
 <mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
-    <mat-card-header class="d-flex justify-content-between w-100">
+    <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
         <mat-card-title class="mb-0">
-            <div class="mt-2">Available Playlists</div>
+            <div class="mt-2 mb-2 mb-sm-0">Available Playlists</div>
         </mat-card-title>
         <div class="d-flex">
             <button mat-flat-button class="btn-sp" style="margin-right: 15px" (click)="displayExportOptionsDialog()">
@@ -27,33 +27,43 @@
         <ng-template #elseBlock>
             <mat-selection-list [(ngModel)]="selectedPlaylists">
                 <mat-list-option *ngFor="let playlist of playlists" checkboxPosition="before"
-                                 [value]="{id: playlist.id, name: playlist.name}">
-                    <div [ngStyle]="{'display': 'inline-block'}">
-                        <div [ngStyle]="{'float': 'left', 'display': 'flex'}">
+                                 [value]="{id: playlist.id, name: playlist.name}" class="mb-5 mb-sm-0">
+                    <div class="d-flex justify-content-between flex-column flex-sm-row">
+                        <div class="d-flex">
                             <div [style]="{'margin-right': '5px'}">
                                 <div mat-line>{{playlist.name}}</div>
                                 <div mat-line> {{playlist.tracksCount}} Tracks</div>
                             </div>
-                            <div [style]="{'margin-right': '5px'}">
-                                <mat-icon matTooltip="Private Playlist" [hidden]="!playlist.publicStatus">lock
-                                </mat-icon>
-                                <mat-icon matTooltip="Public Playlist" [hidden]="playlist.publicStatus">lock_open
-                                </mat-icon>
-                            </div>
                             <div>
-                                <mat-icon matTooltip="Collaborative Playlist" [hidden]="!playlist.collaborative">
-                                    folder_shared
-                                </mat-icon>
+                                <div [style]="{'margin-right': '5px'}">
+                                    <mat-icon matTooltip="Private Playlist" [hidden]="!playlist.publicStatus">lock
+                                    </mat-icon>
+                                    <mat-icon matTooltip="Public Playlist" [hidden]="playlist.publicStatus">lock_open
+                                    </mat-icon>
+                                </div>
+                                <div>
+                                    <mat-icon matTooltip="Collaborative Playlist" [hidden]="!playlist.collaborative">
+                                        folder_shared
+                                    </mat-icon>
+                                </div>
                             </div>
                         </div>
-                        <div [ngStyle]="{'float': 'right'}">
-                            <button mat-flat-button class="btn-sp" [style]="{'margin-right': '10px'}"
+                        <div>
+                            <button mat-flat-button class="btn-sp me-1 me-sm-3"
                                     routerLink="../{{playlist.id}}">
-                                <i class="fas fa-external-link-alt"></i>&nbsp;Open Playlist
+                                <i class="fas fa-external-link-alt"></i>&nbsp;
+                                Open
+                                <span class="d-none d-sm-inline">
+                                    Playlist
+                                </span>
                             </button>
                             <button mat-flat-button class="btn-sp"
                                     (click)="displayExportOptionsDialog(playlist.id, playlist.name)">
-                                <mat-icon>save_alt</mat-icon>&nbsp;Export Playlist
+                                <mat-icon>save_alt</mat-icon>&nbsp;
+                                Export
+                                <span class="d-none d-sm-inline">
+                                    Playlist
+                                </span>
                             </button>
                         </div>
                     </div>
