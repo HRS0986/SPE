@@ -4,10 +4,16 @@
         <span>&nbsp; Spotify Playlist Exporter</span>
         <span></span>
     </div>
-    <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="switchAccount()">
-        <i class="fas fa-exchange-alt"></i>&nbsp;
-        Switch Account
-    </button>
+    <div>
+        <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="switchAccount()" class="me-2">
+            <i class="fas fa-exchange-alt"></i>&nbsp;
+            Switch Account
+        </button>
+        <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="endSession()">
+            <i class="fas fa-trash"></i>&nbsp;
+            End Session
+        </button>
+    </div>
 </mat-toolbar>
 
 <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
