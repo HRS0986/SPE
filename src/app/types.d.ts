@@ -50,6 +50,7 @@ export interface Playlist {
 export interface PlaylistMetaData {
   collaborative: boolean;
   description: string;
+  tracks: { total: number; };
   followers: {
     total: number;
   };
@@ -135,13 +136,15 @@ export interface TrackField {
 }
 
 interface DisplayTrackApiObject {
+  id: string;
   name: string;
   artists: Array<{ name: string; }>;
 }
 
 export interface DisplayTrackObject {
+  id: string;
   name: string;
-  artists: string[];
+  artists: string;
 }
 
 export interface DialogResult {
@@ -150,11 +153,13 @@ export interface DialogResult {
 }
 
 interface DisplayTrackApiObject {
+  id: string;
   name: string;
   artists: Array<{ name: string; }>;
 }
 
 export interface DisplayTrackObject {
+  id: string;
   name: string;
-  artists: string[];
+  artists: string;
 }

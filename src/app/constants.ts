@@ -2,7 +2,8 @@ import { TrackField } from './types';
 
 export const SPOTIFY_TOKEN = 'SpotifyAccessToken';
 
-export const BIG_TITLE = 'Spotify Playlist Exporter';
+export const BIG_TITLE = 'Spex';
+export const SUB_TITLE = 'Spotify Playlist Exporter';
 
 export const PLAYLISTS_LIMIT = 50;
 

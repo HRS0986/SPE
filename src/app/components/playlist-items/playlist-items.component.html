@@ -1,4 +1,4 @@
-<mat-card [ngClass]="'mat-elevation-z8'" [ngStyle]="{'height': '90vh', 'width': '100%'}">
+<mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
     <mat-card-header class="d-flex justify-content-between w-100">
         <mat-card-title class="mb-0">
             <div class="mt-2">{{playlistMetaData.name}}</div>
@@ -7,8 +7,11 @@
             <button mat-button routerLink="../all" style="margin-right: 15px">
                 <mat-icon>arrow_back</mat-icon>&nbsp;Back To Playlists
             </button>
+            <button mat-flat-button class="btn-sp ml-1 me-2" (click)="exportSelected()">
+                <mat-icon>save_alt</mat-icon>&nbsp;Export Selected
+            </button>
             <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog()">
-                <mat-icon>save_alt</mat-icon>&nbsp;Export To Text
+                <mat-icon>save_alt</mat-icon>&nbsp;Export All
             </button>
         </div>
     </mat-card-header>
@@ -25,12 +28,16 @@
             </div>
         </ng-template>
         <ng-template #elseBlock>
-            <mat-selection-list>
-                <mat-list-item *ngFor="let track of playlistItems">
-                    <mat-icon mat-list-icon>audiotrack</mat-icon>
-                    <div mat-line>{{track.name}}</div>
-                    <div mat-line> {{track.artists}}</div>
-                </mat-list-item>
+            <mat-selection-list [(ngModel)]="selectedTracks">
+                <mat-list-option *ngFor="let track of playlistItems" checkboxPosition="before" [value]="track.id">
+                    <div class="d-flex">
+                        <mat-icon mat-list-icon>audiotrack</mat-icon>
+                        <div>
+                            <div mat-line>{{track.name}}</div>
+                            <div mat-line>{{track.artists}}</div>
+                        </div>
+                    </div>
+                </mat-list-option>
             </mat-selection-list>
         </ng-template>
     </mat-card-content>
