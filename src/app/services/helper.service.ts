@@ -19,11 +19,12 @@ export class HelperService {
     return `${minutes}:${seconds}`;
   }
 
-  public getArtistList(artists: Array<{ name: string } | ArtistApiObject>): Array<string> {
-    const artistsList: Array<string> = [];
+  public getArtistList(artists: Array<{ name: string } | ArtistApiObject>): string {
+    let artistsList = '';
     for (const artist of artists) {
-      artistsList.push(artist.name);
+      artistsList += artist.name + ', ';
     }
+    artistsList = artistsList.slice(0, -2);
     return artistsList;
   }
 
@@ -41,6 +42,9 @@ export class HelperService {
     }
     if (fields.includes('duration')) {
       trackString += 'duration_ms,';
+    }
+    if (fields.includes('id')) {
+      trackString += 'id,';
     }
     for (const field of fields) {
       if (field === 'name' || field === 'explicit') {
@@ -70,7 +74,7 @@ export class HelperService {
       track.duration = this.milliSecondsToDuration(trackApiObject.duration_ms);
     }
     if (trackApiObject.artists) {
-      track.artists = this.getArtistList(trackApiObject.artists).join(' & ');
+      track.artists = this.getArtistList(trackApiObject.artists);
     }
     return track;
   }
