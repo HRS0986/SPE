@@ -43,7 +43,7 @@
                                     <mat-list>
                                         <mat-list-item class="profile-text">{{userData.name}}</mat-list-item>
                                         <mat-list-item class="profile-text">{{userData.country}}</mat-list-item>
-                                        <mat-list-item class="profile-text">{{userData.product | titlecase}}Subscription
+                                        <mat-list-item class="profile-text">{{userData.product | titlecase}} Subscription
                                         </mat-list-item>
                                     </mat-list>
                                 </mat-card-content>
@@ -63,10 +63,10 @@
                                 <mat-card-content>
                                     <mat-list>
                                         <mat-list-item>Name: {{playlist.name}}</mat-list-item>
-<!--                                        <mat-list-item>Description: {{playlist.description}}</mat-list-item>-->
                                         <mat-list-item>
                                             Collaborative: {{playlist.collaborative ? 'Yes' : 'No'}}</mat-list-item>
                                         <mat-list-item>Public: {{playlist.public ? 'Yes' : 'No'}}</mat-list-item>
+                                        <mat-list-item>Tracks Count: {{playlist.tracks.total}}</mat-list-item>
                                     </mat-list>
                                 </mat-card-content>
                             </mat-card>

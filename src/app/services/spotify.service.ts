@@ -56,7 +56,7 @@ export class SpotifyService {
     }
 
     public getPlaylistMetaData(playlistId: string): Observable<PlaylistMetaData> {
-        const fieldString = 'collaborative%2Cimages%2Cdescription%2Cfollowers(total)%2Cid%2Cname%2Cpublic';
+        const fieldString = 'collaborative%2Cimages%2Cdescription%2Ctracks(total)%2Cfollowers(total)%2Cid%2Cname%2Cpublic';
         const endpoint = `${BASE_API_URL}playlists/${playlistId}?fields=${fieldString}`;
         return this.http.get<PlaylistMetaData>(endpoint);
     }

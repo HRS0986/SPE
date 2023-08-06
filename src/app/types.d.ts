@@ -50,6 +50,7 @@ export interface Playlist {
 export interface PlaylistMetaData {
   collaborative: boolean;
   description: string;
+  tracks: { total: number; };
   followers: {
     total: number;
   };

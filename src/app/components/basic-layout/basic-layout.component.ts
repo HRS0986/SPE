@@ -43,6 +43,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.loading = true;
         const userDataSubscription: Subscription = this.spotifyService.getUserData().subscribe(data => {
+            console.log(data);
             this.userData = {
                 name: data.display_name,
                 product: data.product,
