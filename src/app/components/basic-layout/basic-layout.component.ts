@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlaylistMetaData, SpotifyProfileData } from '../../types';
 import { Subscription } from 'rxjs';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-basic-layout',
@@ -18,7 +19,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy  {
   playlist!: PlaylistMetaData;
   private subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) {
+  constructor(private route: ActivatedRoute, private spotifyService: SpotifyService, private tokenStorageService: TokenStorageService) {
     const routeParams = this.route.snapshot.paramMap;
     this.playlistsStatus = routeParams.get('playlistsStatus') ? routeParams.get('playlistsStatus') : 'all';
     this.route.params.subscribe(params => {
@@ -27,6 +28,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy  {
         this.playlistId = this.playlistsStatus as string;
         const playlistMetaDataSubscription: Subscription = spotifyService.getPlaylistMetaData(this.playlistId).subscribe(data => {
           this.playlist = data;
+          console.log(this.playlist);
         });
         this.subscriptions.push(playlistMetaDataSubscription);
       }
@@ -41,7 +43,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy  {
         product: data.product,
         country: data.country,
         id: data.id,
-        imageUrl: data.images[0].url,
+        imageUrl: data.images[1].url,
         email: data.email
       };
     });
@@ -53,6 +55,11 @@ export class BasicLayoutComponent implements OnInit, OnDestroy  {
     for (const subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
+  }
+
+  switchAccount(): void {
+    this.tokenStorageService.clearSession();
+    this.spotifyService.authorize();
   }
 
 }
