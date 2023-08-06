@@ -50,12 +50,14 @@ export interface Playlist {
 export interface PlaylistMetaData {
   collaborative: boolean;
   description: string;
+  tracks: { total: number; };
   followers: {
     total: number;
   };
   id: string;
   name: string;
   public: boolean;
+  images: Array<{ height: null | number; url: string; width: null | string; }>;
 }
 
 export interface SpotifyTrackList extends SpotifyApiObject{
@@ -134,13 +136,15 @@ export interface TrackField {
 }
 
 interface DisplayTrackApiObject {
+  id: string;
   name: string;
   artists: Array<{ name: string; }>;
 }
 
 export interface DisplayTrackObject {
+  id: string;
   name: string;
-  artists: string[];
+  artists: string;
 }
 
 export interface DialogResult {
@@ -149,11 +153,13 @@ export interface DialogResult {
 }
 
 interface DisplayTrackApiObject {
+  id: string;
   name: string;
   artists: Array<{ name: string; }>;
 }
 
 export interface DisplayTrackObject {
+  id: string;
   name: string;
-  artists: string[];
+  artists: string;
 }

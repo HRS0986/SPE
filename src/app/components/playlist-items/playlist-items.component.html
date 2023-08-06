@@ -1,38 +1,44 @@
-
-<mat-card [ngClass]="'mat-elevation-z8'" [ngStyle]="{'height': '90vh', 'width': '100%'}">
-  <mat-card-header>
-    <div class="d-flex justify-content-between w-100">
-      <mat-card-title class="mb-0"><div class="mt-2">{{playlistMetaData.name}}</div></mat-card-title>
-      <div>
-      <button mat-button routerLink="../all" style="margin-right: 15px">
-        <mat-icon>arrow_back</mat-icon>&nbsp;Back To Playlists
-      </button>
-        <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog()">
-          <mat-icon>save_alt</mat-icon>&nbsp;Export To Text
-        </button>
-      </div>
-    </div>
-  </mat-card-header>
-  <hr/>
-  <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto', 'width': '70vw'}">
-    <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
-      <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
-        <div class="row d-flex justify-content-center w-100">
-          <mat-spinner></mat-spinner>
+<mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
+    <mat-card-header class="d-flex justify-content-between w-100">
+        <mat-card-title class="mb-0">
+            <div class="mt-2">{{playlistMetaData.name}}</div>
+        </mat-card-title>
+        <div class="d-flex">
+            <button mat-button routerLink="../all" style="margin-right: 15px">
+                <mat-icon>arrow_back</mat-icon>&nbsp;Back To Playlists
+            </button>
+            <button mat-flat-button class="btn-sp ml-1 me-2" (click)="exportSelected()">
+                <mat-icon>save_alt</mat-icon>&nbsp;Export Selected
+            </button>
+            <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog()">
+                <mat-icon>save_alt</mat-icon>&nbsp;Export All
+            </button>
         </div>
-        <div class="row w-100 mt-5">
-          <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template #elseBlock>
-    <mat-selection-list>
-      <mat-list-item *ngFor="let track of playlistItems">
-        <mat-icon mat-list-icon>audiotrack</mat-icon>
-        <div mat-line>{{track.name}}</div>
-        <div mat-line> {{track.artists}}</div>
-      </mat-list-item>
-    </mat-selection-list>
-    </ng-template>
-  </mat-card-content>
+    </mat-card-header>
+    <hr/>
+    <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
+        <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
+            <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
+                <div class="row d-flex justify-content-center w-100">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div class="row w-100 mt-5">
+                    <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #elseBlock>
+            <mat-selection-list [(ngModel)]="selectedTracks">
+                <mat-list-option *ngFor="let track of playlistItems" checkboxPosition="before" [value]="track.id">
+                    <div class="d-flex">
+                        <mat-icon mat-list-icon>audiotrack</mat-icon>
+                        <div>
+                            <div mat-line>{{track.name}}</div>
+                            <div mat-line>{{track.artists}}</div>
+                        </div>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </ng-template>
+    </mat-card-content>
 </mat-card>

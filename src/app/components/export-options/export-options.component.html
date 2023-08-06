@@ -12,11 +12,14 @@
     <mat-hint align="start"><strong>Default is separator is comma</strong></mat-hint>
   </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions align="center">
+<mat-dialog-actions class="d-flex justify-content-around">
   <button
     mat-flat-button class="btn-sp"
     [mat-dialog-close]="{selectedFields: selectedFields, separator: separator}"
     [disabled]="!selectedFields.length">
     <mat-icon>save_alt</mat-icon>&nbsp;Export
+  </button>
+  <button mat-flat-button [mat-dialog-close]="false">
+    Cancel
   </button>
 </mat-dialog-actions>

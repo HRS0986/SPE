@@ -1,67 +1,88 @@
-<mat-toolbar [ngStyle]="{'background': '#1ED760', 'margin-bottom':'10px'}">
-  <i class="fab fa-2x fa-spotify"></i>
-  <span>&nbsp; Spotify Playlist Exporter</span>
-  <span></span>
+<mat-toolbar [ngStyle]="{'background': '#1ED760'}" class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+        <i class="fab fa-2x fa-spotify"></i>
+        <span>&nbsp; S P E X</span>
+        <span></span>
+    </div>
+    <div>
+        <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="switchAccount()" class="me-2">
+            <i class="fas fa-exchange-alt"></i>&nbsp;
+            Switch Account
+        </button>
+        <button mat-flat-button style="background-color: black; color: #1ED760;" (click)="endSession()">
+            <i class="fas fa-trash"></i>&nbsp;
+            End Session
+        </button>
+    </div>
 </mat-toolbar>
 
 <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
-  <div class="container d-flex align-content-center flex-wrap"  style="height: 100vh;">
-    <div class="row d-flex justify-content-center w-100">
-      <mat-spinner></mat-spinner>
+    <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
+        <div class="row d-flex justify-content-center w-100">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div class="row w-100 mt-5">
+            <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
+        </div>
     </div>
-    <div class="row w-100 mt-5">
-      <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
-    </div>
-  </div>
 </ng-template>
 <ng-template #elseBlock>
-<mat-grid-list cols="4" rowHeight="45vh">
-
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <mat-card class="mat-elevation-z8 w-95">
-      <mat-card-header>
-        <div mat-card-avatar></div>
-        <mat-card-title>Profile Data</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-list>
-          <mat-list-item>{{userData.name}}</mat-list-item>
-          <mat-list-item>{{userData.country}}</mat-list-item>
-          <mat-list-item>{{userData.product | titlecase}} Subscription</mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile [colspan]="3" [rowspan]="2">
-    <ng-template [ngIf]="playlistsStatus == 'all'" [ngIfElse]="elseBlock">
-      <app-playlists [style]="{'width': '95%'}"></app-playlists>
-    </ng-template>
-    <ng-template #elseBlock>
-      <app-playlist-items [style]="{'width': '95%'}" [playlistId]="playlistId"></app-playlist-items>
-    </ng-template>
-  </mat-grid-tile>
-
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <ng-template [ngIf]="playlistsStatus != 'all'">
-    <mat-card class="mat-elevation-z8 w-95">
-      <mat-card-header>
-        <div mat-card-avatar></div>
-        <mat-card-title>Playlist Data</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-list>
-          <mat-list-item>Name: {{playlist.name}}</mat-list-item>
-          <mat-list-item>Description: {{playlist.description}}</mat-list-item>
-          <mat-list-item>Collaborative: {{playlist.collaborative ? 'Yes': 'No'}}</mat-list-item>
-          <mat-list-item>Public: {{playlist.public ? 'Yes': 'No'}}</mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-    </ng-template>
-  </mat-grid-tile>
-
-</mat-grid-list>
+    <div class="container-fluid" style="background-color: #E9EAE5; padding-top: 20px;">
+        <div class="row justify-content-between">
+            <div class="col-3 flex-column d-flex justify-content-center align-items-center">
+                <ng-template [ngIf]="playlistsStatus == 'all'" [ngIfElse]="playlistBlock">
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-card style="box-shadow: none;">
+                                <mat-card-header>
+                                    <div mat-card-avatar></div>
+                                    <mat-card-title style="text-align: center;">Profile Data</mat-card-title>
+                                </mat-card-header>
+                                <img mat-card-image src="{{userData.imageUrl}}"/>
+                                <mat-card-content>
+                                    <mat-list>
+                                        <mat-list-item class="profile-text">{{userData.name}}</mat-list-item>
+                                        <mat-list-item class="profile-text">{{userData.country}}</mat-list-item>
+                                        <mat-list-item class="profile-text">{{userData.product | titlecase}} Subscription
+                                        </mat-list-item>
+                                    </mat-list>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template #playlistBlock>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-card style="box-shadow: none;">
+                                <mat-card-header>
+                                    <div mat-card-avatar></div>
+                                    <mat-card-title style="text-align: center;">Playlist Data</mat-card-title>
+                                </mat-card-header>
+                                <img [class]="playlist.images.length == 1 ? 'd-block':'d-none'" style="width: 300px;" mat-card-image src="{{playlist.images[0].url}}" />
+                                <mat-card-content>
+                                    <mat-list>
+                                        <mat-list-item>Name: {{playlist.name}}</mat-list-item>
+                                        <mat-list-item>
+                                            Collaborative: {{playlist.collaborative ? 'Yes' : 'No'}}</mat-list-item>
+                                        <mat-list-item>Public: {{playlist.public ? 'Yes' : 'No'}}</mat-list-item>
+                                        <mat-list-item>Tracks Count: {{playlist.tracks.total}}</mat-list-item>
+                                    </mat-list>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="col-8">
+                <ng-template [ngIf]="playlistsStatus == 'all'" [ngIfElse]="elseBlock">
+                    <app-playlists [style]="{'width': '95%'}"></app-playlists>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <app-playlist-items [style]="{'width': '95%'}"
+                                        [playlistId]="playlistId"></app-playlist-items>
+                </ng-template>
+            </div>
+        </div>
+    </div>
 </ng-template>
