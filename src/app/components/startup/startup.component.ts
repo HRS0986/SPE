@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { Router, Event, RouterEvent } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { BIG_TITLE, SPOTIFY_TOKEN } from '../../constants';
+import { BIG_TITLE, SPOTIFY_TOKEN, SUB_TITLE } from '../../constants';
 
 @Component({
     selector: 'app-startup',
@@ -13,6 +13,7 @@ export class StartupComponent implements OnInit {
 
     public loading = false;
     public bigTitle: string = BIG_TITLE;
+    public subTitle: string = SUB_TITLE;
 
     constructor(private spotifyService: SpotifyService, private router: Router, private tokenStorageService: TokenStorageService) {
         this.router.events.subscribe((event: Event) => {
@@ -49,7 +50,7 @@ export class StartupComponent implements OnInit {
         } else {
             setTimeout(() => {
                 this.okToDisplay = true;
-            }, 3000);
+            }, 2000);
         }
     }
 
