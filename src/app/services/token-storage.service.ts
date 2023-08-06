@@ -20,4 +20,8 @@ export class TokenStorageService {
     sessionStorage.removeItem(name);
   }
 
+  public clearSession(): void {
+    sessionStorage.clear();
+  }
+
 }

@@ -56,6 +56,7 @@ export interface PlaylistMetaData {
   id: string;
   name: string;
   public: boolean;
+  images: Array<{ height: null | number; url: string; width: null | string; }>;
 }
 
 export interface SpotifyTrackList extends SpotifyApiObject{

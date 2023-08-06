@@ -22,12 +22,12 @@ export class SpotifyService {
 
   private clientId = '4d3ca951d1e44b3e8cb4732bfa790f5d';
   private scope = encodeURIComponent('playlist-read-private user-read-private user-read-email playlist-read-collaborative');
-  private redirectUri = encodeURIComponent('https://hrs0986.github.io/spotify-playlist-exporter/');
+  private redirectUri = encodeURIComponent('http://localhost:4200/');
   private okToPlaylists = false;
   private subscriptions: Subscription[] = [];
 
   public authorize(): void {
-    const authUrl = `https://accounts.spotify.com/authorize?client_id=${this.clientId}&response_type=token&redirect_uri=${this.redirectUri}&scope=${this.scope}`;
+    const authUrl = `https://accounts.spotify.com/authorize?client_id=${this.clientId}&response_type=token&redirect_uri=${this.redirectUri}&scope=${this.scope}&show_dialog=true`;
     window.location.href = authUrl;
   }
 
@@ -56,7 +56,7 @@ export class SpotifyService {
   }
 
   public getPlaylistMetaData(playlistId: string): Observable<PlaylistMetaData> {
-    const fieldString = 'collaborative%2Cdescription%2Cfollowers(total)%2Cid%2Cname%2Cpublic';
+    const fieldString = 'collaborative%2Cimages%2Cdescription%2Cfollowers(total)%2Cid%2Cname%2Cpublic';
     const endpoint = `${BASE_API_URL}playlists/${playlistId}?fields=${fieldString}`;
     return this.http.get<PlaylistMetaData>(endpoint);
   }

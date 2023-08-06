@@ -1,0 +1,12 @@
+::ng-deep .mat-card-header-text {
+    width: 100%;
+}
+ ::ng-deep .mat-card-avatar {
+     display: none;
+ }
+
+ .profile-text {
+     font-weight: bolder;
+     justify-content: center;
+     display: flex !important;
+ }
