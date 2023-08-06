@@ -1,17 +1,29 @@
 <mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
-    <mat-card-header class="d-flex justify-content-between w-100">
+    <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
         <mat-card-title class="mb-0">
-            <div class="mt-2">{{playlistMetaData.name}}</div>
+            <div class="mt-2 mb-2 mb-sm-0">{{playlistMetaData.name}}</div>
         </mat-card-title>
         <div class="d-flex">
-            <button mat-button routerLink="../all" style="margin-right: 15px">
-                <mat-icon>arrow_back</mat-icon>&nbsp;Back To Playlists
+            <button mat-button routerLink="../all" class="me-1 me-sm-2">
+                <mat-icon>arrow_back</mat-icon>&nbsp;
+                Back
+                <span class="d-none d-sm-inline">
+                    To Playlists
+                </span>
             </button>
             <button mat-flat-button class="btn-sp ml-1 me-2" (click)="exportSelected()">
-                <mat-icon>save_alt</mat-icon>&nbsp;Export Selected
+                <mat-icon>save_alt</mat-icon>&nbsp;
+                <span class="d-none d-sm-inline">
+                    Export
+                </span>
+                Selected
             </button>
             <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog()">
-                <mat-icon>save_alt</mat-icon>&nbsp;Export All
+                <mat-icon>save_alt</mat-icon>&nbsp;
+                <span class="d-none d-sm-inline">
+                    Export
+                </span>
+                All
             </button>
         </div>
     </mat-card-header>
