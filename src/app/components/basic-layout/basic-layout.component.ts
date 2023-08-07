@@ -49,7 +49,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
                 product: data.product,
                 country: data.country,
                 id: data.id,
-                imageUrl: data.images[1].url,
+                imageUrl: data.images.length === 0 ? 'assets/avatar.png' : data.images[1].url,
                 email: data.email
             };
         });

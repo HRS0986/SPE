@@ -17,6 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const accessToken = this.tokenStorageService.getFromSessionStorage(SPOTIFY_TOKEN);
+    console.log(accessToken);
     return next.handle(request.clone({
       headers: request.headers.set('Authorization', `Bearer ${accessToken}`),
     }));
