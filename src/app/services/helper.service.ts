@@ -1,6 +1,12 @@
 import {Injectable} from '@angular/core';
 import {ArtistApiObject, Track, TrackApiObject} from '../types';
 
+declare global {
+  interface Navigator {
+    msSaveBlob?: (blob: any, defaultName?: string) => boolean
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
