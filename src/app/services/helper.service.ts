@@ -3,7 +3,7 @@ import {ArtistApiObject, Track, TrackApiObject} from '../types';
 
 declare global {
   interface Navigator {
-    msSaveBlob?: (blob: any, defaultName?: string) => boolean
+    msSaveBlob?: (blob: any, defaultName?: string) => boolean;
   }
 }
 
