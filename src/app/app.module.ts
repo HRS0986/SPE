@@ -20,28 +20,27 @@ import { TokenInterceptor } from './helpers/token.interceptor';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PlaylistsComponent,
-    PlaylistItemsComponent,
-    BasicLayoutComponent,
-    StartupComponent,
-    ExportOptionsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    PlaylistGuard,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [ExportOptionsComponent],
+    declarations: [
+        AppComponent,
+        PlaylistsComponent,
+        PlaylistItemsComponent,
+        BasicLayoutComponent,
+        StartupComponent,
+        ExportOptionsComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        HttpClientModule
+    ],
+    providers: [
+        PlaylistGuard,
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
