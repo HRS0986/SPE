@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ExportOptionsComponent } from '../export-options/export-options.component';
 import { SpotifyService } from '../../services/spotify.service';
 import { Subscription } from 'rxjs';
 import { PlaylistMetaData, DisplayTrackObject, DialogResult } from '../../types';
 import { INITIAL_OFFSET, PLAYLIST_ITEM_LIMIT } from '../../constants';
 import { HelperService } from '../../services/helper.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
     selector: 'app-playlist-items',
