@@ -12,11 +12,12 @@ import { StartupComponent } from './components/startup/startup.component';
 import { ExportOptionsComponent } from './components/export-options/export-options.component';
 
 import { MaterialModule } from './material.module';
-import { MAT_LEGACY_DIALOG_DEFAULT_OPTIONS as MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/legacy-dialog';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { PlaylistGuard } from './guards/playlist.guard';
 import { TokenInterceptor } from './helpers/token.interceptor';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { NgOptimizedImage } from "@angular/common";
 
 
 @NgModule({
@@ -28,14 +29,15 @@ import { TokenInterceptor } from './helpers/token.interceptor';
         StartupComponent,
         ExportOptionsComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        FormsModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    HttpClientModule,
+    NgOptimizedImage
+  ],
     providers: [
         PlaylistGuard,
         { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },

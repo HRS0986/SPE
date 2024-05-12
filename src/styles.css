@@ -32,5 +32,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .btn-sp {
-  background-color: #1ED760
+  background-color: #1ED760 !important;
+  /*font-family: Roboto, "Helvetica Neue", sans-serif !important;*/
 }
