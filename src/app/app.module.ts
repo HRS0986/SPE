@@ -17,7 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { PlaylistGuard } from './guards/playlist.guard';
 import { TokenInterceptor } from './helpers/token.interceptor';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 
 
 @NgModule({
