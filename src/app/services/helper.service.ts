@@ -1,16 +1,22 @@
-import {Injectable} from '@angular/core';
-import {ArtistApiObject, Track, TrackApiObject} from '../types';
+import { Injectable } from '@angular/core';
+import { ArtistApiObject, Track, TrackApiObject } from '../types';
+
+declare global {
+  interface Navigator {
+    msSaveBlob?: (blob: any, defaultName?: string) => boolean;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
 
-  constructor() {
-  }
-
   filename = 'PlaylistCSV - ';
   csvBlobs: Array<Blob> = [];
+
+  constructor() {
+  }
 
   public milliSecondsToDuration(milliSeconds: number): string {
     let seconds = milliSeconds / 1000;

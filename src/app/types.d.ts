@@ -60,7 +60,7 @@ export interface PlaylistMetaData {
   images: Array<{ height: null | number; url: string; width: null | string; }>;
 }
 
-export interface SpotifyTrackList extends SpotifyApiObject{
+export interface SpotifyTrackList extends SpotifyApiObject {
   items: Array<{ track: DisplayTrackApiObject }>;
 }
 
@@ -126,7 +126,6 @@ export interface WritableTrackList {
   items: Array<{ track: TrackApiObject }>;
   total: number;
 }
-
 
 
 export interface TrackField {

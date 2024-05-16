@@ -6,7 +6,7 @@ import { TokenStorageService } from './services/token-storage.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Spotify-Playlist-Exporter';
 
   constructor(private tokenStorageService: TokenStorageService) {

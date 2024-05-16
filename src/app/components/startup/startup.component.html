@@ -1,14 +1,14 @@
 <div class="container-fluid align-items-center pt-2">
   <div class="d-flex justify-content-center align-items-center mb-5">
-    <img src="../../../assets/spotify-logo.png" class="rounded mx-auto d-block fade-in" style="width: 300px;"
-         alt="image">
+    <img alt="image" class="rounded mx-auto d-block fade-in"
+         height="268" ngSrc="../../../assets/spotify-logo.png" width="300">
   </div>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mat-display-4 fade-in">&nbsp;{{bigTitle}}</h1>
-    <h2 class="mat-display-3 fade-in">&nbsp;{{subTitle}}</h2>
+    <h1 class="mat-headline-1 fade-in" style="font-weight: normal">&nbsp;{{ bigTitle }}</h1>
+    <h2 class="mat-headline-2 fade-in" style="font-weight: normal">&nbsp;{{ subTitle }}</h2>
   </div>
   <div class="d-flex justify-content-center align-items-center">
-    <button mat-raised-button class="btn-sp" [hidden]="!okToDisplay" (click)="startAuth()">
+    <button (click)="startAuth()" [hidden]="!okToDisplay" class="btn-sp" mat-raised-button>
       Start Spex
     </button>
   </div>

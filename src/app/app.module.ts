@@ -12,11 +12,12 @@ import { StartupComponent } from './components/startup/startup.component';
 import { ExportOptionsComponent } from './components/export-options/export-options.component';
 
 import { MaterialModule } from './material.module';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PlaylistGuard } from './guards/playlist.guard';
 import { TokenInterceptor } from './helpers/token.interceptor';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { NgOptimizedImage } from '@angular/common';
 
 
 @NgModule({
@@ -34,14 +35,15 @@ import { TokenInterceptor } from './helpers/token.interceptor';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgOptimizedImage,
   ],
   providers: [
     PlaylistGuard,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [ExportOptionsComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
