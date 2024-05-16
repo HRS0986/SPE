@@ -14,7 +14,6 @@ import { ExportOptionsComponent } from './components/export-options/export-optio
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { PlaylistGuard } from './guards/playlist.guard';
 import { TokenInterceptor } from './helpers/token.interceptor';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { NgOptimizedImage } from '@angular/common';
@@ -39,7 +38,6 @@ import { NgOptimizedImage } from '@angular/common';
     NgOptimizedImage,
   ],
   providers: [
-    PlaylistGuard,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
