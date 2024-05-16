@@ -1,4 +1,4 @@
-import { Component, inject, Inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TRACK_FIELDS } from '../../constants';
 import { TrackField } from '../../types';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
