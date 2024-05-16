@@ -13,7 +13,7 @@ import { ExportOptionsComponent } from './components/export-options/export-optio
 
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PlaylistGuard } from './guards/playlist.guard';
 import { TokenInterceptor } from './helpers/token.interceptor';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -21,14 +21,14 @@ import { NgOptimizedImage } from '@angular/common';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        PlaylistsComponent,
-        PlaylistItemsComponent,
-        BasicLayoutComponent,
-        StartupComponent,
-        ExportOptionsComponent,
-    ],
+  declarations: [
+    AppComponent,
+    PlaylistsComponent,
+    PlaylistItemsComponent,
+    BasicLayoutComponent,
+    StartupComponent,
+    ExportOptionsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,13 +36,14 @@ import { NgOptimizedImage } from '@angular/common';
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
-    providers: [
-        PlaylistGuard,
-        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-    ],
-    bootstrap: [AppComponent]
+  providers: [
+    PlaylistGuard,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

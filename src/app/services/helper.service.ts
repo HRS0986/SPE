@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ArtistApiObject, Track, TrackApiObject} from '../types';
+import { Injectable } from '@angular/core';
+import { ArtistApiObject, Track, TrackApiObject } from '../types';
 
 declare global {
   interface Navigator {
@@ -12,11 +12,11 @@ declare global {
 })
 export class HelperService {
 
-  constructor() {
-  }
-
   filename = 'PlaylistCSV - ';
   csvBlobs: Array<Blob> = [];
+
+  constructor() {
+  }
 
   public milliSecondsToDuration(milliSeconds: number): string {
     let seconds = milliSeconds / 1000;

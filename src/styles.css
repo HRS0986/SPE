@@ -1,14 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
-.mat-pseudo-checkbox-checked {
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep .mat-mdc-checkbox.mat-primary .mdc-form-field .mdc-checkbox .mdc-checkbox__background {
   background: #1ED760 !important;
 }
 
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: #1ED760 !important;
+}
+
+.mat-mdc-card-header {
+  padding: 16px !important;
 }
 
 /* width */

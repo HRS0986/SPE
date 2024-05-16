@@ -12,6 +12,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const materialModules = [
   MatGridListModule,
@@ -24,7 +25,8 @@ const materialModules = [
   MatFormFieldModule,
   MatButtonModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTooltipModule
 ];
 
 @NgModule({
@@ -35,4 +37,5 @@ const materialModules = [
   ],
   exports: materialModules
 })
-export class MaterialModule { }
+export class MaterialModule {
+}

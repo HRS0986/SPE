@@ -7,12 +7,13 @@ import { PlaylistGuard } from './guards/playlist.guard';
 
 
 const routes: Routes = [
-  { path: 'playlists/:playlistsStatus', component: BasicLayoutComponent, canActivate: [PlaylistGuard] },
-  { path: '', component: StartupComponent },
+  {path: 'playlists/:playlistsStatus', component: BasicLayoutComponent, canActivate: [PlaylistGuard]},
+  {path: '', component: StartupComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
