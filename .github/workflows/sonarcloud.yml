@@ -2,7 +2,7 @@ name: Code Quality Analysis With SonarCloud
 
 on:
   pull_request:
-    branches: [ "master","release" ]
+    branches: [ "master","release","dev" ]
   workflow_dispatch:
 
 permissions:
