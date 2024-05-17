@@ -1,21 +1,15 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router, UrlTree } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PlaylistGuard implements CanActivate {
 
-  constructor(private spotifyService: SpotifyService, private router: Router) {
-  }
-
-  canActivate(): boolean {
-    const isPlaylistsUnlocked = this.spotifyService.getPlaylistsRouteStatus();
+export function playlistGuard(): boolean | UrlTree {
+    const playlistService: SpotifyService = inject(SpotifyService);
+    const router: Router = inject(Router);
+    const isPlaylistsUnlocked = playlistService.getPlaylistsRouteStatus();
     if (isPlaylistsUnlocked) {
       return true;
+    } else {
+      return router.createUrlTree(['/']);
     }
-    this.router.navigate(['/']);
-    return false;
-  }
 }

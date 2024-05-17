@@ -1,75 +1,75 @@
 <mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
-    <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
-        <mat-card-title class="mb-0">
-            <div class="mt-2 mb-2 mb-sm-0">Available Playlists</div>
-        </mat-card-title>
-        <div class="d-flex">
-            <button mat-flat-button class="btn-sp" style="margin-right: 15px" (click)="displayExportOptionsDialog()">
-                <mat-icon>save_alt</mat-icon>&nbsp;Export Selected
-            </button>
-            <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog('all')">
-                <mat-icon>save_alt</mat-icon>&nbsp;Export All
-            </button>
+  <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
+    <mat-card-title class="mb-0">
+      <div class="mt-2 mb-2 mb-sm-0">Available Playlists</div>
+    </mat-card-title>
+    <div class="d-flex">
+      <button (click)="displayExportOptionsDialog()" class="btn-sp" mat-flat-button style="margin-right: 15px">
+        <mat-icon>save_alt</mat-icon>&nbsp;Export Selected
+      </button>
+      <button (click)="displayExportOptionsDialog('all')" class="btn-sp ml-1" mat-flat-button>
+        <mat-icon>save_alt</mat-icon>&nbsp;Export All
+      </button>
+    </div>
+  </mat-card-header>
+  <hr style="margin: 5px;"/>
+  <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
+    <ng-template [ngIfElse]="elseBlock" [ngIf]="loading">
+      <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
+        <div class="row d-flex justify-content-center w-100">
+          <mat-spinner></mat-spinner>
         </div>
-    </mat-card-header>
-    <hr/>
-    <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
-        <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
-            <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
-                <div class="row d-flex justify-content-center w-100">
-                    <mat-spinner></mat-spinner>
+        <div class="row w-100 mt-5">
+          <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <mat-selection-list [(ngModel)]="selectedPlaylists">
+        <mat-list-option *ngFor="let playlist of playlists" [value]="{id: playlist.id, name: playlist.name}"
+                         checkboxPosition="before" class="mb-5 mb-sm-0">
+          <div class="d-flex justify-content-between flex-column flex-sm-row">
+            <div class="d-flex">
+              <div [style]="{'margin-right': '5px'}">
+                <div mat-line>{{ playlist.name }}</div>
+                <div mat-line> {{ playlist.tracksCount }} Tracks</div>
+              </div>
+              <div>
+                <div [style]="{'margin-right': '5px'}">
+                  <mat-icon [hidden]="!playlist.publicStatus" matTooltip="Private Playlist">lock
+                  </mat-icon>
+                  <mat-icon [hidden]="playlist.publicStatus" matTooltip="Public Playlist">lock_open
+                  </mat-icon>
                 </div>
-                <div class="row w-100 mt-5">
-                    <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
+                <div>
+                  <mat-icon [hidden]="!playlist.collaborative" matTooltip="Collaborative Playlist">
+                    folder_shared
+                  </mat-icon>
                 </div>
+              </div>
             </div>
-        </ng-template>
-        <ng-template #elseBlock>
-            <mat-selection-list [(ngModel)]="selectedPlaylists">
-                <mat-list-option *ngFor="let playlist of playlists" checkboxPosition="before"
-                                 [value]="{id: playlist.id, name: playlist.name}" class="mb-5 mb-sm-0">
-                    <div class="d-flex justify-content-between flex-column flex-sm-row">
-                        <div class="d-flex">
-                            <div [style]="{'margin-right': '5px'}">
-                                <div mat-line>{{playlist.name}}</div>
-                                <div mat-line> {{playlist.tracksCount}} Tracks</div>
-                            </div>
-                            <div>
-                                <div [style]="{'margin-right': '5px'}">
-                                    <mat-icon matTooltip="Private Playlist" [hidden]="!playlist.publicStatus">lock
-                                    </mat-icon>
-                                    <mat-icon matTooltip="Public Playlist" [hidden]="playlist.publicStatus">lock_open
-                                    </mat-icon>
-                                </div>
-                                <div>
-                                    <mat-icon matTooltip="Collaborative Playlist" [hidden]="!playlist.collaborative">
-                                        folder_shared
-                                    </mat-icon>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button mat-flat-button class="btn-sp me-1 me-sm-3"
-                                    routerLink="../{{playlist.id}}">
-                                <i class="fas fa-external-link-alt"></i>&nbsp;
-                                Open
-                                <span class="d-none d-sm-inline">
+            <div>
+              <button class="btn-sp me-1 me-sm-3" mat-flat-button
+                      routerLink="../{{playlist.id}}">
+                <i class="fas fa-external-link-alt"></i>&nbsp;
+                Open
+                <span class="d-none d-sm-inline">
                                     Playlist
                                 </span>
-                            </button>
-                            <button mat-flat-button class="btn-sp"
-                                    (click)="displayExportOptionsDialog(playlist.id, playlist.name)">
-                                <mat-icon>save_alt</mat-icon>&nbsp;
-                                Export
-                                <span class="d-none d-sm-inline">
+              </button>
+              <button (click)="displayExportOptionsDialog(playlist.id, playlist.name)" class="btn-sp"
+                      mat-flat-button>
+                <mat-icon>save_alt</mat-icon>&nbsp;
+                Export
+                <span class="d-none d-sm-inline">
                                     Playlist
                                 </span>
-                            </button>
-                        </div>
-                    </div>
-                </mat-list-option>
-            </mat-selection-list>
-        </ng-template>
-    </mat-card-content>
+              </button>
+            </div>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-template>
+  </mat-card-content>
 </mat-card>
 

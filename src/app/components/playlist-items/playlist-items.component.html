@@ -1,56 +1,56 @@
 <mat-card [ngStyle]="{'height': '90vh', 'width': '100%', 'box-shadow': 'none'}">
-    <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
-        <mat-card-title class="mb-0">
-            <div class="mt-2 mb-2 mb-sm-0">{{playlistMetaData.name}}</div>
-        </mat-card-title>
-        <div class="d-flex">
-            <button mat-button routerLink="../all" class="me-1 me-sm-2">
-                <mat-icon>arrow_back</mat-icon>&nbsp;
-                Back
-                <span class="d-none d-sm-inline">
+  <mat-card-header class="d-flex justify-content-between w-100 flex-column flex-sm-row">
+    <mat-card-title class="mb-0">
+      <div class="mt-2 mb-2 mb-sm-0">{{ playlistMetaData.name }}</div>
+    </mat-card-title>
+    <div class="d-flex">
+      <button class="me-1 me-sm-2" mat-button routerLink="../all">
+        <mat-icon>arrow_back</mat-icon>&nbsp;
+        Back
+        <span class="d-none d-sm-inline">
                     To Playlists
                 </span>
-            </button>
-            <button mat-flat-button class="btn-sp ml-1 me-2" (click)="exportSelected()">
-                <mat-icon>save_alt</mat-icon>&nbsp;
-                <span class="d-none d-sm-inline">
+      </button>
+      <button (click)="exportSelected()" class="btn-sp ml-1 me-2" mat-flat-button>
+        <mat-icon>save_alt</mat-icon>&nbsp;
+        <span class="d-none d-sm-inline">
                     Export
                 </span>
-                Selected
-            </button>
-            <button mat-flat-button class="btn-sp ml-1" (click)="displayExportOptionsDialog()">
-                <mat-icon>save_alt</mat-icon>&nbsp;
-                <span class="d-none d-sm-inline">
+        Selected
+      </button>
+      <button (click)="displayExportOptionsDialog()" class="btn-sp ml-1" mat-flat-button>
+        <mat-icon>save_alt</mat-icon>&nbsp;
+        <span class="d-none d-sm-inline">
                     Export
                 </span>
-                All
-            </button>
+        All
+      </button>
+    </div>
+  </mat-card-header>
+  <hr style="margin: 5px;"/>
+  <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
+    <ng-template [ngIfElse]="elseBlock" [ngIf]="loading">
+      <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
+        <div class="row d-flex justify-content-center w-100">
+          <mat-spinner></mat-spinner>
         </div>
-    </mat-card-header>
-    <hr/>
-    <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
-        <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
-            <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
-                <div class="row d-flex justify-content-center w-100">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="row w-100 mt-5">
-                    <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
-                </div>
+        <div class="row w-100 mt-5">
+          <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <mat-selection-list [(ngModel)]="selectedTracks">
+        <mat-list-option *ngFor="let track of playlistItems" [value]="track.id" checkboxPosition="before">
+          <div class="d-flex">
+            <mat-icon mat-list-icon>audiotrack</mat-icon>
+            <div>
+              <div mat-line>{{ track.name }}</div>
+              <div mat-line>{{ track.artists }}</div>
             </div>
-        </ng-template>
-        <ng-template #elseBlock>
-            <mat-selection-list [(ngModel)]="selectedTracks">
-                <mat-list-option *ngFor="let track of playlistItems" checkboxPosition="before" [value]="track.id">
-                    <div class="d-flex">
-                        <mat-icon mat-list-icon>audiotrack</mat-icon>
-                        <div>
-                            <div mat-line>{{track.name}}</div>
-                            <div mat-line>{{track.artists}}</div>
-                        </div>
-                    </div>
-                </mat-list-option>
-            </mat-selection-list>
-        </ng-template>
-    </mat-card-content>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-template>
+  </mat-card-content>
 </mat-card>

@@ -16,12 +16,12 @@ export const BASE_API_URL = 'https://api.spotify.com/v1/';
 export const DEFAULT_SEPARATOR = ',';
 
 export const TRACK_FIELDS: TrackField[] = [
-  { field: 'name', displayName: 'Name', checked: true },
-  { field: 'number', displayName: 'Track Number', checked: true },
-  { field: 'artist', displayName: 'Artist', checked: false },
-  { field: 'album', displayName: 'Album', checked: false },
-  { field: 'url', displayName: 'URL', checked: false },
-  { field: 'duration', displayName: 'Duration', checked: false },
-  { field: 'explicit', displayName: 'Explicit',  checked: false },
-  { field: 'headers', displayName: 'Include Headers', checked: false },
+  {field: 'name', displayName: 'Name', checked: true},
+  {field: 'number', displayName: 'Track Number', checked: true},
+  {field: 'artist', displayName: 'Artist', checked: false},
+  {field: 'album', displayName: 'Album', checked: false},
+  {field: 'url', displayName: 'URL', checked: false},
+  {field: 'duration', displayName: 'Duration', checked: false},
+  {field: 'explicit', displayName: 'Explicit', checked: false},
+  {field: 'headers', displayName: 'Include Headers', checked: false},
 ];
