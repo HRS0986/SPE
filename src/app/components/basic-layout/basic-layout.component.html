@@ -20,7 +20,7 @@
   </div>
 </mat-toolbar>
 
-<ng-template [ngIfElse]="elseBlock" [ngIf]="loading">
+@if (loading) {
   <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
     <div class="row d-flex justify-content-center w-100">
       <mat-spinner></mat-spinner>
@@ -29,13 +29,12 @@
       <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
     </div>
   </div>
-</ng-template>
-<ng-template #elseBlock>
+} @else {
   <div class="container-fluid" style="background-color: #E9EAE5; padding-top: 20px;">
     <div class="row justify-content-between">
 
       <div class="col-12 col-sm-3 flex-column d-flex justify-content-center align-items-center mb-3 mb-sm-0">
-        <ng-template [ngIfElse]="playlistBlock" [ngIf]="playlistsStatus == 'all'">
+        @if (playlistsStatus == 'all') {
           <div class="row">
             <div class="col-12">
               <mat-card style="box-shadow: none;">
@@ -55,8 +54,7 @@
               </mat-card>
             </div>
           </div>
-        </ng-template>
-        <ng-template #playlistBlock>
+        } @else {
           <div class="row">
             <div class="col-12">
               <mat-card style="box-shadow: none;">
@@ -79,17 +77,15 @@
               </mat-card>
             </div>
           </div>
-        </ng-template>
+        }
       </div>
       <div class="col-12 col-sm-8">
-        <ng-template [ngIfElse]="elseBlock" [ngIf]="playlistsStatus == 'all'">
+        @if (playlistsStatus == 'all') {
           <app-playlists [style]="{'width': '95%'}"></app-playlists>
-        </ng-template>
-        <ng-template #elseBlock>
-          <app-playlist-items [playlistId]="playlistId"
-                              [style]="{'width': '95%'}"></app-playlist-items>
-        </ng-template>
+        } @else {
+          <app-playlist-items [playlistId]="playlistId" [style]="{'width': '95%'}"></app-playlist-items>
+        }
       </div>
     </div>
   </div>
-</ng-template>
+}

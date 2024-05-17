@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Spotify-Playlist-Exporter:build"
+            "buildTarget": "Spotify-Playlist-Exporter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Spotify-Playlist-Exporter:build:production"
+              "buildTarget": "Spotify-Playlist-Exporter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Spotify-Playlist-Exporter:build"
+            "buildTarget": "Spotify-Playlist-Exporter:build"
           }
         },
         "test": {

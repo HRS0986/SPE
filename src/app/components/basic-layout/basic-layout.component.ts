@@ -71,7 +71,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
   endSession(): void {
     this.tokenStorageService.clearSession();
     this.spotifyService.setPlaylistsRouteStatus(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
 }
