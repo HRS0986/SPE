@@ -29,7 +29,7 @@
   </mat-card-header>
   <hr style="margin: 5px;"/>
   <mat-card-content [ngStyle]="{'height': '90%', 'overflow-y': 'auto'}">
-    <ng-template [ngIfElse]="elseBlock" [ngIf]="loading">
+    @if (loading) {
       <div class="container d-flex align-content-center flex-wrap" style="height: 100vh;">
         <div class="row d-flex justify-content-center w-100">
           <mat-spinner></mat-spinner>
@@ -38,19 +38,20 @@
           <p class="mat-display-2 d-flex justify-content-center">Please Wait</p>
         </div>
       </div>
-    </ng-template>
-    <ng-template #elseBlock>
+    } @else {
       <mat-selection-list [(ngModel)]="selectedTracks">
-        <mat-list-option *ngFor="let track of playlistItems" [value]="track.id" checkboxPosition="before">
-          <div class="d-flex">
-            <mat-icon mat-list-icon>audiotrack</mat-icon>
-            <div>
-              <div mat-line>{{ track.name }}</div>
-              <div mat-line>{{ track.artists }}</div>
+        @for (track of playlistItems; track track) {
+          <mat-list-option [value]="track.id" togglePosition="before">
+            <div class="d-flex">
+              <mat-icon matListItemIcon>audiotrack</mat-icon>
+              <div>
+                <div mat-line>{{ track.name }}</div>
+                <div mat-line>{{ track.artists }}</div>
+              </div>
             </div>
-          </div>
-        </mat-list-option>
+          </mat-list-option>
+        }
       </mat-selection-list>
-    </ng-template>
+    }
   </mat-card-content>
 </mat-card>

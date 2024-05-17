@@ -5,9 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class TokenStorageService {
 
-  constructor() {
-  }
-
   public saveToSessionStorage(token: string, name: string): void {
     sessionStorage.setItem(name, token);
   }

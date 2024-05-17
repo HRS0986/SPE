@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
 import { BASE_API_URL, DEFAULT_SEPARATOR, INITIAL_OFFSET, PLAYLIST_ITEM_LIMIT, PLAYLISTS_LIMIT } from '../constants';
@@ -23,8 +23,8 @@ export class SpotifyService {
   private okToPlaylists = false;
   private subscriptions: Subscription[] = [];
 
-  constructor(private http: HttpClient, private helperService: HelperService) {
-  }
+  private http: HttpClient = inject(HttpClient);
+  private helperService: HelperService = inject(HelperService);
 
   public authorize(): void {
     const authUrl = `https://accounts.spotify.com/authorize?client_id=${this.clientId}&response_type=token&redirect_uri=${this.redirectUri}&scope=${this.scope}&show_dialog=true`;
