@@ -11,3 +11,7 @@
   justify-content: center;
   display: flex !important;
 }
+
+.avatar {
+  background-size: cover;
+}

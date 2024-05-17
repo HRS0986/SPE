@@ -13,10 +13,11 @@ import { ExportOptionsComponent } from './components/export-options/export-optio
 
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { NgOptimizedImage } from '@angular/common';
 import { tokenInterceptor } from "./helpers/token.interceptor";
+import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 
 
 @NgModule({
@@ -36,6 +37,9 @@ import { tokenInterceptor } from "./helpers/token.interceptor";
     FormsModule,
     HttpClientModule,
     NgOptimizedImage,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},

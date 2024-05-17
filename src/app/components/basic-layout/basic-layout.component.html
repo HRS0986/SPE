@@ -4,19 +4,26 @@
     <span>&nbsp; S P E X</span>
     <span></span>
   </div>
-  <div>
-    <button (click)="switchAccount()" class="me-2" mat-flat-button style="background-color: black; color: #1ED760;">
-      <i class="fas fa-exchange-alt"></i>&nbsp;
-      <span class="d-none d-sm-inline">
-                Switch Account
-            </span>
+  <div class="d-flex align-items-center gap-2">
+    <p class="mb-0" style="font-weight: normal; font-size: medium">{{ userData.name }}</p>
+    <button mat-button [matMenuTriggerFor]="beforeMenu">
+      <div mat-card-avatar class="avatar mb-0" [style.background-image]="'url('+this.userData.imageUrl+')'">
+      </div>
     </button>
-    <button (click)="endSession()" mat-flat-button style="background-color: black; color: #1ED760;">
-      <i class="fas fa-trash"></i>&nbsp;
-      <span class="d-none d-sm-inline">
-                End Session
-            </span>
-    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button (click)="switchAccount()" mat-menu-item>
+        <i class="fas fa-exchange-alt"></i>&nbsp;
+        <span class="d-none d-sm-inline">
+                  Switch Account
+              </span>
+      </button>
+      <button (click)="endSession()" mat-menu-item>
+        <i class="fas fa-trash"></i>&nbsp;
+        <span class="d-none d-sm-inline">
+                  End Session
+              </span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>
 
@@ -31,54 +38,6 @@
   </div>
 } @else {
   <div class="container-fluid" style="background-color: #E9EAE5; padding-top: 20px;">
-    <div class="row justify-content-between">
-
-      <div class="col-12 col-sm-3 flex-column d-flex justify-content-center align-items-center mb-3 mb-sm-0">
-        @if (playlistsStatus == 'all') {
-          <div class="row">
-            <div class="col-12">
-              <mat-card style="box-shadow: none;">
-                <mat-card-header style="display: flex; justify-content: center; align-items: center;">
-                  <mat-card-title>Profile Data</mat-card-title>
-                </mat-card-header>
-                <img mat-card-image src="{{userData.imageUrl}}" style="width: 300px;"/>
-                <mat-card-content>
-                  <mat-list>
-                    <mat-list-item class="profile-text">{{ userData.name }}</mat-list-item>
-                    <mat-list-item class="profile-text">{{ userData.country }}</mat-list-item>
-                    <mat-list-item class="profile-text">{{ userData.product | titlecase }}
-                      Subscription
-                    </mat-list-item>
-                  </mat-list>
-                </mat-card-content>
-              </mat-card>
-            </div>
-          </div>
-        } @else {
-          <div class="row">
-            <div class="col-12">
-              <mat-card style="box-shadow: none;">
-                <mat-card-header>
-                  <div mat-card-avatar></div>
-                  <mat-card-title style="text-align: center;">Playlist Data</mat-card-title>
-                </mat-card-header>
-                <img [class]="playlist.images.length == 1 ? 'd-block':'d-none'" mat-card-image
-                     src="{{playlist.images[0].url}}" style="width: 300px;"/>
-                <mat-card-content>
-                  <mat-list>
-                    <mat-list-item>Name: {{ playlist.name }}</mat-list-item>
-                    <mat-list-item>
-                      Collaborative: {{ playlist.collaborative ? 'Yes' : 'No' }}
-                    </mat-list-item>
-                    <mat-list-item>Public: {{ playlist.public ? 'Yes' : 'No' }}</mat-list-item>
-                    <mat-list-item>Tracks Count: {{ playlist.tracks.total }}</mat-list-item>
-                  </mat-list>
-                </mat-card-content>
-              </mat-card>
-            </div>
-          </div>
-        }
-      </div>
       <div class="col-12 col-sm-8">
         @if (playlistsStatus == 'all') {
           <app-playlists [style]="{'width': '95%'}"></app-playlists>
@@ -86,6 +45,5 @@
           <app-playlist-items [playlistId]="playlistId" [style]="{'width': '95%'}"></app-playlist-items>
         }
       </div>
-    </div>
   </div>
 }

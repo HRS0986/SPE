@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlaylistMetaData, SpotifyProfileData } from '../../types';
@@ -11,7 +11,6 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./basic-layout.component.css']
 })
 export class BasicLayoutComponent implements OnInit, OnDestroy {
-
   playlistsStatus: string | null = 'all';
   playlistId!: string;
   userData!: SpotifyProfileData;
@@ -73,5 +72,4 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
     this.spotifyService.setPlaylistsRouteStatus(false);
     this.router.navigate(['/']).then();
   }
-
 }
