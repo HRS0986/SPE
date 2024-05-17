@@ -2,10 +2,11 @@
 <mat-dialog-content>
   <p>What fields you want to export?</p>
   <mat-selection-list [(ngModel)]="selectedFields">
-    <mat-list-option *ngFor="let field of trackFields" [selected]="field.checked" [value]="field.field"
-                     class="mat-primary">
-      {{ field.displayName }}
-    </mat-list-option>
+    @for (field of trackFields; track field) {
+      <mat-list-option [selected]="field.checked" [value]="field.field" class="mat-primary">
+        {{ field.displayName }}
+      </mat-list-option>
+    }
   </mat-selection-list>
   <mat-divider></mat-divider>
   <mat-form-field [floatLabel]="'auto'" [style]="{'width': '100%'}">

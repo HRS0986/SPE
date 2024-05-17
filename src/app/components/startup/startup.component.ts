@@ -32,7 +32,7 @@ export class StartupComponent implements OnInit {
           this.tokenStorageService.saveToSessionStorage(accessToken, SPOTIFY_TOKEN);
           this.spotifyService.setPlaylistsRouteStatus(true);
           this.loading = false;
-          this.router.navigate(['/playlists/all']);
+          this.router.navigate(['/playlists/all']).then();
         }
 
       }
@@ -44,7 +44,7 @@ export class StartupComponent implements OnInit {
     const token = this.tokenStorageService.getFromSessionStorage(SPOTIFY_TOKEN);
     if (token) {
       this.spotifyService.setPlaylistsRouteStatus(true);
-      this.router.navigate(['/playlists/all']).then(data => {
+      this.router.navigate(['/playlists/all']).then(() => {
       });
     } else {
       setTimeout(() => {
@@ -60,7 +60,7 @@ export class StartupComponent implements OnInit {
       this.spotifyService.setPlaylistsRouteStatus(true);
     } else {
       this.spotifyService.setPlaylistsRouteStatus(true);
-      this.router.navigate(['/playlists/all']).then(data => {
+      this.router.navigate(['/playlists/all']).then(() => {
       });
     }
   }

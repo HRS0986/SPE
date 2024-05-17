@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
@@ -7,10 +7,7 @@ import { TokenStorageService } from './services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Spotify-Playlist-Exporter';
-
-  constructor(private tokenStorageService: TokenStorageService) {
-  }
+  private tokenStorageService: TokenStorageService = inject(TokenStorageService);
 
   ngOnInit(): void {
     setInterval(() => {

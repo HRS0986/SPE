@@ -13,10 +13,10 @@ import { ExportOptionsComponent } from './components/export-options/export-optio
 
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from './helpers/token.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { NgOptimizedImage } from '@angular/common';
+import { tokenInterceptor } from "./helpers/token.interceptor";
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import { NgOptimizedImage } from '@angular/common';
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    provideHttpClient(withInterceptors([tokenInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
