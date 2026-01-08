@@ -13,39 +13,33 @@ import { ExportOptionsComponent } from './components/export-options/export-optio
 
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { NgOptimizedImage } from '@angular/common';
 import { tokenInterceptor } from "./helpers/token.interceptor";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    PlaylistsComponent,
-    PlaylistItemsComponent,
-    BasicLayoutComponent,
-    StartupComponent,
-    ExportOptionsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    HttpClientModule,
-    NgOptimizedImage,
-    MatMenuTrigger,
-    MatMenu,
-    MatMenuItem,
-  ],
-  providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
-    provideHttpClient(withInterceptors([tokenInterceptor]))
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        PlaylistsComponent,
+        PlaylistItemsComponent,
+        BasicLayoutComponent,
+        StartupComponent,
+        ExportOptionsComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        NgOptimizedImage,
+        MatMenuTrigger,
+        MatMenu,
+        MatMenuItem], providers: [
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
+        provideHttpClient(withInterceptors([tokenInterceptor])),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
