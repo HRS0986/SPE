@@ -9,9 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-playlists',
-  templateUrl: './playlists.component.html',
-  styleUrls: ['./playlists.component.css']
+    selector: 'app-playlists',
+    templateUrl: './playlists.component.html',
+    styleUrls: ['./playlists.component.css'],
+    standalone: false
 })
 export class PlaylistsComponent implements OnInit, OnDestroy {
 

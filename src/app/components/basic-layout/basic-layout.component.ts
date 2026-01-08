@@ -6,9 +6,10 @@ import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
-  selector: 'app-basic-layout',
-  templateUrl: './basic-layout.component.html',
-  styleUrls: ['./basic-layout.component.css']
+    selector: 'app-basic-layout',
+    templateUrl: './basic-layout.component.html',
+    styleUrls: ['./basic-layout.component.css'],
+    standalone: false
 })
 export class BasicLayoutComponent implements OnInit, OnDestroy {
   playlistsStatus: string | null = 'all';

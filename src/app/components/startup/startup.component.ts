@@ -5,9 +5,10 @@ import { TokenStorageService } from '../../services/token-storage.service';
 import { BIG_TITLE, SPOTIFY_TOKEN, SUB_TITLE } from '../../constants';
 
 @Component({
-  selector: 'app-startup',
-  templateUrl: './startup.component.html',
-  styleUrls: ['./startup.component.css']
+    selector: 'app-startup',
+    templateUrl: './startup.component.html',
+    styleUrls: ['./startup.component.css'],
+    standalone: false
 })
 export class StartupComponent implements OnInit {
 

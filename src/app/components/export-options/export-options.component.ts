@@ -4,9 +4,10 @@ import { TrackField } from '../../types';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-export-options',
-  templateUrl: './export-options.component.html',
-  styleUrls: ['./export-options.component.css']
+    selector: 'app-export-options',
+    templateUrl: './export-options.component.html',
+    styleUrls: ['./export-options.component.css'],
+    standalone: false
 })
 export class ExportOptionsComponent implements OnInit {
 
