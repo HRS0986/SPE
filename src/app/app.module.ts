@@ -7,20 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PlaylistsComponent } from './components/playlists/playlists.component';
 import { PlaylistItemsComponent } from './components/playlist-items/playlist-items.component';
+
 import { BasicLayoutComponent } from './components/basic-layout/basic-layout.component';
 import { StartupComponent } from './components/startup/startup.component';
 import { ExportOptionsComponent } from './components/export-options/export-options.component';
 
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptors, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { NgOptimizedImage } from '@angular/common';
 import { tokenInterceptor } from "./helpers/token.interceptor";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         PlaylistsComponent,
         PlaylistItemsComponent,
@@ -37,9 +39,9 @@ import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
         MatMenuTrigger,
         MatMenu,
         MatMenuItem], providers: [
-        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
-        provideHttpClient(withInterceptors([tokenInterceptor])),
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+            { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
+            provideHttpClient(withInterceptors([tokenInterceptor]), withInterceptorsFromDi())
+        ]
+})
 export class AppModule {
 }
