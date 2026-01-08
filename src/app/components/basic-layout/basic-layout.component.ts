@@ -1,15 +1,20 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlaylistMetaData, SpotifyProfileData } from '../../types';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { MaterialModule } from '../../material.module';
+import { PlaylistsComponent } from '../playlists/playlists.component';
+import { PlaylistItemsComponent } from '../playlist-items/playlist-items.component';
 
 @Component({
-    selector: 'app-basic-layout',
-    templateUrl: './basic-layout.component.html',
-    styleUrls: ['./basic-layout.component.css'],
-    standalone: false
+  selector: 'app-basic-layout',
+  templateUrl: './basic-layout.component.html',
+  styleUrls: ['./basic-layout.component.css'],
+  standalone: true,
+  imports: [CommonModule, RouterModule, MaterialModule, NgOptimizedImage, PlaylistsComponent, PlaylistItemsComponent]
 })
 export class BasicLayoutComponent implements OnInit, OnDestroy {
   playlistsStatus: string | null = 'all';

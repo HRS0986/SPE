@@ -7,12 +7,17 @@ import { INITIAL_OFFSET, PLAYLISTS_LIMIT } from '../../constants';
 import { HelperService } from '../../services/helper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../material.module';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-playlists',
-    templateUrl: './playlists.component.html',
-    styleUrls: ['./playlists.component.css'],
-    standalone: false
+  selector: 'app-playlists',
+  templateUrl: './playlists.component.html',
+  styleUrls: ['./playlists.component.css'],
+  standalone: true,
+  imports: [CommonModule, MaterialModule, FormsModule, RouterModule]
 })
 export class PlaylistsComponent implements OnInit, OnDestroy {
 

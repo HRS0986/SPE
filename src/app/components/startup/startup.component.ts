@@ -3,12 +3,15 @@ import { SpotifyService } from '../../services/spotify.service';
 import { Event, Router, RouterEvent } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { BIG_TITLE, SPOTIFY_TOKEN, SUB_TITLE } from '../../constants';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { MaterialModule } from '../../material.module';
 
 @Component({
-    selector: 'app-startup',
-    templateUrl: './startup.component.html',
-    styleUrls: ['./startup.component.css'],
-    standalone: false
+  selector: 'app-startup',
+  templateUrl: './startup.component.html',
+  styleUrls: ['./startup.component.css'],
+  standalone: true,
+  imports: [CommonModule, MaterialModule, NgOptimizedImage]
 })
 export class StartupComponent implements OnInit {
 

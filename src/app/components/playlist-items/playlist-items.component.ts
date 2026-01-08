@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { ExportOptionsComponent } from '../export-options/export-options.component';
 import { SpotifyService } from '../../services/spotify.service';
 import { Subscription } from 'rxjs';
@@ -7,16 +7,20 @@ import { INITIAL_OFFSET, PLAYLIST_ITEM_LIMIT } from '../../constants';
 import { HelperService } from '../../services/helper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../material.module';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-playlist-items',
-    templateUrl: './playlist-items.component.html',
-    styleUrls: ['./playlist-items.component.css'],
-    standalone: false
+  selector: 'app-playlist-items',
+  templateUrl: './playlist-items.component.html',
+  styleUrls: ['./playlist-items.component.css'],
+  standalone: true,
+  imports: [CommonModule, MaterialModule, FormsModule]
 })
 export class PlaylistItemsComponent implements OnInit {
 
-  @Input() playlistId!: string;
+  playlistId = input.required<string>();
 
   loading = false;
   subscriptions: Subscription[] = [];
@@ -32,13 +36,13 @@ export class PlaylistItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.getPlaylistItems(this.playlistId, INITIAL_OFFSET);
+    this.getPlaylistItems(this.playlistId(), INITIAL_OFFSET);
     this.loading = true;
     const iterationCount: number = this.helperService.getRequestIterationCount(this.totalTracksCount, PLAYLIST_ITEM_LIMIT);
     for (let i = 1; i <= iterationCount; i++) {
-      this.getPlaylistItems(this.playlistId, i);
+      this.getPlaylistItems(this.playlistId(), i);
     }
-    const playlistMetaDataSubscription: Subscription = this.spotifyService.getPlaylistMetaData(this.playlistId).subscribe(data => {
+    const playlistMetaDataSubscription: Subscription = this.spotifyService.getPlaylistMetaData(this.playlistId()).subscribe(data => {
       this.playlistMetaData = data;
       this.loading = false;
     });
@@ -51,7 +55,7 @@ export class PlaylistItemsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: DialogResult) => {
       if (result !== undefined) {
-        this.spotifyService.playlistToText(this.playlistId, result.selectedFields, result.separator, this.playlistMetaData.name);
+        this.spotifyService.playlistToText(this.playlistId(), result.selectedFields, result.separator, this.playlistMetaData.name);
       }
     });
     this.spotifyService.unsubscribeAll();
@@ -73,7 +77,7 @@ export class PlaylistItemsComponent implements OnInit {
         if (result !== undefined) {
           result.selectedFields.push('id');
           this.spotifyService.playlistToText(
-            this.playlistId,
+            this.playlistId(),
             result.selectedFields,
             result.separator,
             this.playlistMetaData.name,
